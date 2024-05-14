@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 private val Frag1 = FirstFragment()
 private val Frag2 = SecondFragment()
@@ -19,7 +20,16 @@ class MenuBar : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        replaceFrag(Frag1)
+        val bottomBar = findViewById<BottomNavigationView>(R.id.NavBar)
+        bottomBar.setOnItemSelectedListener {
+            when(it.itemId)
+            {
+                R.id.ic_home->replaceFrag(Frag1)
+                R.id.ic_settings->replaceFrag(Frag2)
+            }
+            true
+        }
     }
 
     private fun replaceFrag(fragment: Fragment)
